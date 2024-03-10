@@ -30,12 +30,12 @@
 						<div class="row">
         				    <div class="col-md-6">
 								<h2>Inputs</h2>
-        				        <table class="table table-bordered">
+        				        <table id="gpioInputTable" class="table table-bordered">
         				            <thead>
         				                <tr>
         				                    <th>GPIO</th>
         				                    <th>Function</th>
-        				                    <th>Direction</th>
+        				                    <th>Value</th>
         				                </tr>
         				            </thead>
         				            <tbody>
@@ -56,24 +56,32 @@
         				    </div>
         				    <div class="col-md-6">
 								<h2>Outputs</h2>
-        				        <table class="table table-bordered">
+        				        <table id="gpioOutputTable" class="table table-bordered">
         				            <thead>
         				                <tr>
         				                    <th>GPIO</th>
         				                    <th>Function</th>
-        				                    <th>Direction</th>
+        				                    <th>Value</th>
         				                </tr>
         				            </thead>
         				            <tbody>
         				                <tr>
         				                    <td>GPIO15</td>
         				                    <td>SPI_MOSI</td>
-        				                    <td>↑</td>
+											<td>
+											  <a class="btn btn-primary btn-sm">Hi</a>
+											  <a class="btn btn-outline-primary btn-sm">Lo</a>
+											  <a class="btn btn-primary btn-sm">Toggle</a>
+											</td>
         				                </tr>
         				                <tr>
         				                    <td>GPIO16</td>
         				                    <td>SPI_MISO</td>
-        				                    <td>↓</td>
+											<td>
+											  <a class="btn btn-outline-primary btn-sm">Hi</a>
+											  <a class="btn btn-primary btn-sm">Lo</a>
+											  <a class="btn btn-primary btn-sm">Toggle</a>
+											</td>
         				                </tr>
         				                <!-- Add more rows as needed -->
         				            </tbody>
@@ -143,11 +151,10 @@
 							<tr>
 								<td class="pinLabel"></td>
 								<td>
-									<select class="form-select">
-									  <option value="option1">-</option>
-									  <option value="option2">Input</option>
-									  <option value="option3">Output</option>
-									  <option value="option4">SPI (CS_L)</option>
+									<select class="form-select" data-gpio="GPIO2">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
 									</select>
 								</td>
 								<td>GPIO2</td>
@@ -159,7 +166,13 @@
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO3">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO3</td>
 								<td>5</td>
 								<td>6</td>
@@ -169,37 +182,79 @@
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO4">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO4</td>
 								<td>7</td>
 								<td>8</td>
 								<td>GPIO14</td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO14">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GND</td>
 								<td>9</td>
 								<td>10</td>
 								<td>GPIO15</td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO15">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO17">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO17</td>
 								<td>11</td>
 								<td>12</td>
 								<td>GPIO18</td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO18">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO27">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO27</td>
 								<td>13</td>
 								<td>14</td>
@@ -209,12 +264,24 @@
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO22">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO22</td>
 								<td>15</td>
 								<td>16</td>
 								<td>GPIO23</td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO23">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
@@ -224,12 +291,24 @@
 								<td>17</td>
 								<td>18</td>
 								<td>GPIO24</td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO10</td>
 								<td>19</td>
 								<td>20</td>
@@ -239,22 +318,46 @@
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO9</td>
 								<td>21</td>
 								<td>22</td>
 								<td>GPIO25</td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO11</td>
 								<td>23</td>
 								<td>24</td>
 								<td>GPIO8</td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
@@ -264,22 +367,46 @@
 								<td>25</td>
 								<td>26</td>
 								<td>GPIO7</td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO0</td>
 								<td>27</td>
 								<td>28</td>
 								<td>GPIO1</td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO5</td>
 								<td>29</td>
 								<td>30</td>
@@ -289,17 +416,35 @@
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO6</td>
 								<td>31</td>
 								<td>32</td>
 								<td>GPIO12</td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO19</td>
 								<td>33</td>
 								<td>34</td>
@@ -309,22 +454,46 @@
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO19</td>
 								<td>35</td>
 								<td>36</td>
 								<td>GPIO16</td>
-								<td>-</td>
+								<td>
+									<select class="form-select">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
 								<td class="pinLabel"></td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO26">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td>GPIO26</td>
 								<td>37</td>
 								<td>38</td>
 								<td>GPIO20</td>
-								<td>-</td>
+								<td>
+									<select class="form-select" data-gpio="GPIO20">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 							<tr>
@@ -333,8 +502,13 @@
 								<td>GND</td>
 								<td>39</td>
 								<td>40</td>
-								<td>GPIO21</td>
-								<td>-</td>
+								<td>GPIO21</td> <td>
+									<select class="form-select" data-gpio="GPIO21">
+									  <option value="-">-</option>
+									  <option value="Input">Input</option>
+									  <option value="Output">Output</option>
+									</select>
+								</td>
 								<td class="pinLabel"></td>
 							</tr>
 						</table>
@@ -351,6 +525,40 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 	document.addEventListener('DOMContentLoaded', (event) => {
+	  let gpioInputList = {};
+	  let gpioOutputList = {};
+
+	  const updateInputTable = () => {
+        const tableBody = document.querySelector('#gpioInputTable tbody');
+        tableBody.innerHTML = ''; // Clear existing table contents
+
+        Object.keys(gpioInputList).forEach((gpio) => {
+          const row = tableBody.insertRow();
+          const cellGpio = row.insertCell(0);
+          const cellFunction = row.insertCell(1);
+          const cellValue = row.insertCell(2);
+
+          cellGpio.textContent = gpio;
+          cellFunction.textContent = 'Function Name'; // Replace with actual function name if available
+          cellValue.textContent = gpioInputList[gpio];
+        });
+      };
+
+	  document.querySelectorAll('.form-select').forEach(select => {
+		select.addEventListener('change', function() {
+		  const gpio = this.getAttribute('data-gpio');
+		  const value = this.value;
+		  
+		  if (value !== '-') {
+			gpioInputList[gpio] = value;
+		  } else {
+			delete gpioInputList[gpio];
+		  }
+		  
+		  updateInputTable(); // Update the table
+		});
+	  });
+
 	  document.querySelectorAll('.pinLabel').forEach(cell => {
 		cell.addEventListener('click', function() {
 		  if (!this.hasAttribute('contentEditable')) {
@@ -385,6 +593,31 @@
     	  select.style.display = 'none';
     	});
 	  });
+
+	document.querySelectorAll('.form-select').forEach(select => {
+	    select.addEventListener('change', function() {
+		  const gpio = this.getAttribute('data-gpio');
+		  const value = this.value;
+		  console.log(`GPIO: ${gpio}, Value: ${value}`);
+		  // Here you can handle the association with the GPIO pinA
+		  // Update the list if the value is not '-'
+		  if (value !== '-') {
+			if (value === 'Input') {
+			  gpioInputList[gpio] = value;
+			} else if (value === 'Output') {
+			  gpioOutputList[gpio] = value;
+			}
+		  } else {
+			// Remove the GPIO from the list if the value is '-'
+			delete gpioInputList[gpio];
+			delete gpioOutputList[gpio];
+		  }
+
+		  console.log(gpioInputList); // for debugging purposes
+		  console.log(gpioOutputList); // for debugging purposes
+	    });
+	  });
+
 	});
 	</script>
 </body>
