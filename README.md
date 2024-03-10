@@ -4,6 +4,8 @@ Pigpen is an HTTP Gateway to Hardware Interfaces on a Raspberry Pi. It's an easy
 
 It's a great way to interact with your low level hardware thru a browser client, a Python CLI, or `curl` calls.
 
+![our mascot](img/pigpen.png)
+
 # Who's this for?
 
 Primarily, me: Nash Reilly, aka @cushychicken. 
