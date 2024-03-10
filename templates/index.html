@@ -1,24 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flask App with WebSocket</title>
-    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
-    <script>
-        var socket = io.connect('http://' + document.domain + ':' + location.port);
+    <title>PigPen</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 
-        socket.on('connect', function() {
-            console.log('Connected to WebSocket');
-        });
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}"></link>
 
-        socket.on('data_updated', function(data) {
-            // Update the client's data with the received data
-            console.log('Data updated:', data);
-            // Add code here to update the UI with the new data
-        });
-    </script>
+	<script src="{{ url_for('static', filename='js/socket.io.min.js') }}"></script>
 </head>
 <body>
-    <h1>Welcome to the Flask App with WebSocket</h1>
+    <div class="container my-3">
+		    <div class="container my-3">
+			    <h1>Pigpen</h1>
+    		    <ul class="nav nav-tabs" id="myTab" role="tablist">
+    		        <li class="nav-item" role="presentation">
+    		            <a class="nav-link active" id="main-tab" data-bs-toggle="tab" href="#main" role="tab" aria-controls="main" aria-selected="true">Main</a>
+    		        </li>
+    		        <li class="nav-item" role="presentation">
+    		            <a class="nav-link" id="pin-configs-tab" data-bs-toggle="tab" href="#pin-configs" role="tab" aria-controls="pin-configs" aria-selected="false">Pin Configs</a>
+    		        </li>
+    		        <li class="nav-item" role="presentation">
+    		            <a class="nav-link" id="app-settings-tab" data-bs-toggle="tab" href="#app-settings" role="tab" aria-controls="app-settings" aria-selected="false">App Settings</a>
+    		        </li>
+    		    </ul>
+    		    <div class="tab-content" id="myTabContent">
+    		        <div class="tab-pane fade show active" id="main" role="tabpanel" aria-labelledby="main-tab">
+    		            <!-- Existing content goes here -->
+						<div class="row">
+        				    <div class="col-md-6">
+								<h2>Inputs</h2>
+        				        <table class="table table-bordered">
+        				            <thead>
+        				                <tr>
+        				                    <th>GPIO</th>
+        				                    <th>Function</th>
+        				                    <th>Direction</th>
+        				                </tr>
+        				            </thead>
+        				            <tbody>
+        				                <tr>
+        				                    <td>GPIO13</td>
+        				                    <td>SPI_INT_L</td>
+        				                    <td>↑</td>
+</td>
+        				                </tr>
+        				                <tr>
+        				                    <td>GPIO14</td>
+        				                    <td>SPI_CLK</td>
+        				                    <td>↓</td>
+        				                </tr>
+        				                <!-- Add more rows as needed -->
+        				            </tbody>
+        				        </table>
+        				    </div>
+        				    <div class="col-md-6">
+								<h2>Outputs</h2>
+        				        <table class="table table-bordered">
+        				            <thead>
+        				                <tr>
+        				                    <th>GPIO</th>
+        				                    <th>Function</th>
+        				                    <th>Direction</th>
+        				                </tr>
+        				            </thead>
+        				            <tbody>
+        				                <tr>
+        				                    <td>GPIO15</td>
+        				                    <td>SPI_MOSI</td>
+        				                    <td>↑</td>
+        				                </tr>
+        				                <tr>
+        				                    <td>GPIO16</td>
+        				                    <td>SPI_MISO</td>
+        				                    <td>↓</td>
+        				                </tr>
+        				                <!-- Add more rows as needed -->
+        				            </tbody>
+        				        </table>
+        				    </div>
+        				</div>
+        				<div class="row">
+							<h2>History</h2>
+        				    <div class="col-12">
+        				        <table class="table table-bordered">
+        				            <thead>
+        				                <tr>
+        				                    <th>Type</th>
+        				                    <th>Port</th>
+        				                    <th>Action</th>
+        				                    <th>Timestamp</th>
+        				                    <th>Repeat</th>
+        				                </tr>
+        				            </thead>
+        				            <tbody>
+        				                <tr>
+        				                    <td>In</td>
+        				                    <td>GPIO13</td>
+        				                    <td>Lo → Hi</td>
+        				                    <td>2024-03-10 12:34:56</td>
+        				                    <td>↻</td>
+        				                </tr>
+        				                <tr>
+        				                    <td>Bus</td>
+        				                    <td>SPI0</td>
+        				                    <td>Read</td>
+        				                    <td>2024-03-10 12:35:10</td>
+        				                    <td>↻</td>
+        				                </tr>
+        				                <!-- Add more rows as needed -->
+        				            </tbody>
+        				        </table>
+        				    </div>
+        				</div>
+    		        </div>
+    		        <div class="tab-pane fade" id="pin-configs" role="tabpanel" aria-labelledby="pin-configs-tab">
+    		            <!-- Content for Pin Configs tab goes here -->
+    		        </div>
+    		        <div class="tab-pane fade" id="app-settings" role="tabpanel" aria-labelledby="app-settings-tab">
+    		            <!-- Content for App Settings tab goes here -->
+    		        </div>
+    		    </div>
+    		</div>
+    </div>
+	<script src="{{ url_for('static', filename='js/client.js') }}"></script>
 </body>
 </html>
 
