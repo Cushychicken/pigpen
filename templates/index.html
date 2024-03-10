@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask App with WebSocket</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connect', function() {
+            console.log('Connected to WebSocket');
+        });
+
+        socket.on('data_updated', function(data) {
+            // Update the client's data with the received data
+            console.log('Data updated:', data);
+            // Add code here to update the UI with the new data
+        });
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Flask App with WebSocket</h1>
+</body>
+</html>
+
