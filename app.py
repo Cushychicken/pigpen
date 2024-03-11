@@ -64,7 +64,12 @@ def handle_connect():
 @socketio.on('evt_clt_io')
 def handle_update_io(json_data):
     print("evt_clt_io: received client io event ", json_data)
-    io_engine.process_json(json_data)
+    #io_engine.process_json(json_data)
+
+@socketio.on('cfg_clt_io')
+def handle_cfg_io(json_data):
+    print("cfg_clt_io: received client io event ", json_data)
+    #io_engine.process_json(json_data)
 
 
 if __name__ == '__main__':

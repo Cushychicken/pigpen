@@ -109,83 +109,95 @@ function updateOutputTable(gpioOutputList, gpioLabelList) {
     });
 }
 
-	document.addEventListener('DOMContentLoaded', (event) => {
-      //updateInputTable(gpioInputList, gpioLabelList);
+document.addEventListener('DOMContentLoaded', (event) => {
+  //updateInputTable(gpioInputList, gpioLabelList);
 
-	  document.querySelectorAll('.form-select').forEach(select => {
-		select.addEventListener('change', function() {
-		  const gpio = this.getAttribute('data-gpio');
-		  const value = this.value;
-		  
-		  if (value !== '-') {
-			gpioInputList[gpio] = value;
-		  } else {
-			delete gpioInputList[gpio];
-		  }
-		  
-		  updateInputTable(); // Update the table
-		});
-	  });
-
-	  document.querySelectorAll('.pinLabel').forEach(cell => {
-		cell.addEventListener('click', function() {
-		  if (!this.hasAttribute('contentEditable')) {
-			this.setAttribute('contentEditable', true);
-			this.focus();
-		  }
-		});
-
-		cell.addEventListener('blur', function() {
-		  this.removeAttribute('contentEditable');
-		  // Here you can also handle the new value
-		  // For example, send it to the server or process it
-		  const gpio = this.getAttribute('data-gpio');
-		  gpioLabelList[gpio] = this.textContent;
-		  console.log('New value:', this.textContent);
-		});
-	  });
-	
-	document.querySelectorAll('.select-container').forEach(container => {
-		const select = container.querySelector('.form-select');
-    	const label = container.querySelector('.select-label');
-
-    	label.addEventListener('click', function() {
-    	  select.style.display = 'block';
-    	  select.focus();
-    	});
-
-    	select.addEventListener('change', function() {
-    	  label.textContent = select.options[select.selectedIndex].text;
-    	  select.style.display = 'none';
-    	});
-
-    	select.addEventListener('blur', function() {
-    	  select.style.display = 'none';
-    	});
-	  });
-
-	document.querySelectorAll('.form-select').forEach(select => {
-	    select.addEventListener('change', function() {
-		  const gpio = this.getAttribute('data-gpio');
-		  const value = this.value;
-		  console.log(`GPIO: ${gpio}, Value: ${value}`);
-		  // Here you can handle the association with the GPIO pinA
-		  // Update the list if the value is not '-'
-		  if (value !== '-') {
-			if (value === 'Input') {
-			  gpioInputList[gpio] = value;
-			} else if (value === 'Output') {
-			  gpioOutputList[gpio] = value;
-			}
-		  } else {
-			// Remove the GPIO from the list if the value is '-'
-			delete gpioInputList[gpio];
-			delete gpioOutputList[gpio];
-		  }
-
-		  console.log(gpioInputList); // for debugging purposes
-		  console.log(gpioOutputList); // for debugging purposes
-	    });
-	  });
-
+  document.querySelectorAll('.form-select').forEach(select => {
+	select.addEventListener('change', function() {
+	  const gpio = this.getAttribute('data-gpio');
+	  const value = this.value;
+	  
+	  if (value !== '-') {
+		gpioInputList[gpio] = value;
+	  } else {
+		delete gpioInputList[gpio];
+	  }
+	  
+	  updateInputTable(); // Update the table
 	});
+  });
+
+  document.querySelectorAll('.pinLabel').forEach(cell => {
+	cell.addEventListener('click', function() {
+	  if (!this.hasAttribute('contentEditable')) {
+		this.setAttribute('contentEditable', true);
+		this.focus();
+	  }
+	});
+
+	cell.addEventListener('blur', function() {
+	  this.removeAttribute('contentEditable');
+	  // Here you can also handle the new value
+	  // For example, send it to the server or process it
+	  const gpio = this.getAttribute('data-gpio');
+	  gpioLabelList[gpio] = this.textContent;
+      socket.emit(
+		  'cfg_clt_io', 
+		  { 
+			  'gpio': gpio,
+			  'label': this.textContent
+		  });
+	});
+
+  });
+
+document.querySelectorAll('.select-container').forEach(container => {
+	const select = container.querySelector('.form-select');
+	const label = container.querySelector('.select-label');
+
+	label.addEventListener('click', function() {
+	  select.style.display = 'block';
+	  select.focus();
+	});
+
+	select.addEventListener('change', function() {
+	  label.textContent = select.options[select.selectedIndex].text;
+	  select.style.display = 'none';
+	});
+
+	select.addEventListener('blur', function() {
+	  select.style.display = 'none';
+	});
+  });
+
+document.querySelectorAll('.form-select').forEach(select => {
+	select.addEventListener('change', function() {
+	  const gpio = this.getAttribute('data-gpio');
+	  const value = this.value;
+	  console.log(`GPIO: ${gpio}, Value: ${value}`);
+	  // Here you can handle the association with the GPIO pinA
+	  // Update the list if the value is not '-'
+	  if (value !== '-') {
+		if (value === 'Input') {
+		  gpioInputList[gpio] = value;
+		} else if (value === 'Output') {
+		  gpioOutputList[gpio] = value;
+		}
+	  } else {
+		// Remove the GPIO from the list if the value is '-'
+		delete gpioInputList[gpio];
+		delete gpioOutputList[gpio];
+	  }
+      
+	  socket.emit(
+		  'cfg_clt_io', 
+		  { 
+			  'gpio': [gpio],
+			  'direction': this.value 
+		  });
+
+	  console.log(gpioInputList); // for debugging purposes
+	  console.log(gpioOutputList); // for debugging purposes
+	});
+  });
+});
