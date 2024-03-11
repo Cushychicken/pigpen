@@ -3,18 +3,16 @@ import logging
 from logging.handlers import RotatingFileHandler
 import os
 
-# Flask Imports and Plugins
+# Flask Imports, Plugins, and configuration 
 from flask import Flask, render_template, jsonify
 from flask_socketio import SocketIO
 
-# Internal Imports
-import io_engine
-
-
-# Flask Configurations
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 socketio = SocketIO(app)
+
+# Internal Imports
+import io_engine
 
 
 @app.route('/')
@@ -40,10 +38,32 @@ def modify_data():
 @socketio.on('connect')
 def handle_connect():
     print('Client connected')
+    
+    # Mock data for testing
+    data = {
+            'gpioInput': {
+                    'GPIO10': 'Input',
+                    'GPIO21': 'Input',
+                },
+            'gpioOutput': {
+                    'GPIO5': 'Output',
+                    'GPIO19': 'Output',
+                },
+            'gpioLabel': {
+                    'GPIO5': 'SW_EN',
+                    #'GPIO10': 'ADC_INT_L',
+                    'GPIO19': 'ADC_RST_L',
+                    'GPIO21': 'SW_PG',
+                },
+            }
 
-@socketio.on('update')
+    # Sends initial config of data from device 
+    socketio.emit('evt_srv_io', data)
+    print(f'evt_srv_io: sent {data=}')
+
+@socketio.on('evt_clt_io')
 def handle_update_io(json_data):
-    print("Received IO update:", json_data)
+    print("evt_clt_io: received client io event ", json_data)
     io_engine.process_json(json_data)
 
 
